@@ -1,0 +1,160 @@
+/* ===================================================== */
+/* CONFIGURACIÓN GLOBAL / VARIABLES (Estándar de Calidad)*/
+
+:root {
+    /*Paleta de Colores */
+    --color-primary: #212EA0; /*azul principal*/
+    --color-heading: #000F38; /*azul oscuro para títulos*/
+    --color-text: #676767; /*Gris para texto general*/
+    --color-white: #FFFFFF;
+
+    /*Tipografía*/
+    --font-size-base: 1rem;
+}
+
+/* ================================================ */
+/* BLOQUE: ABOUT (Estructura y Contenedor Principal)*/
+/* ================================================ */
+.about {
+    margin: 100px auto; /*Centrado y espaciado vertical*/
+    padding: 0 5%;
+    width: 90%;
+    max-width: 1200px;
+    gap: 40px;
+    
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Aliniación al inicio del eje cruzado*/
+}
+
+
+/* ================================================ */
+/* ELEMENTO: about-left (Contenedor de Imagen/Video)*/
+/* ================================================ */
+.about-left {
+    /* Box Model */
+    flex-basis: 40%;
+    position: relative;
+    border-radius: 10px;
+    
+    /* Visual */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Se agrega overflow: hidden para que el borde redondeado se aplique a la imagen */
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.about-right {
+    flex-basis: 48%;
+    padding: 20px 0;
+}
+
+/* ELEMENTO: about-img (Imagen)*/
+.about-img {
+    /* Box Model */
+    width: 100%;
+    height: 100%;
+    display: block; /* Elimina cualquier espacio fantasma debajo de la imagen*/
+    
+    /* Visual */
+    border-radius: 10px;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse*/
+}
+
+/* ELEMENTO: play-icon (Control de Video) */
+.play-icon {
+    /* Box Model */
+    width: 70px;
+    height: 70px;
+    
+    /* Posicionamiento */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*Técnica de centrado perfecto*/
+    z-index: 10;
+
+    /* Interacción */
+    cursor: pointer;
+    transition: transform 0.3s ease; /*Transición para el efecto hover*/
+}
+.play-icon:hover {
+    transform: translate(-50%, -50%) scale(1.1); /*Ligero zoom al pasar el ratón*/
+}
+
+/* ================================================ */
+/* ELEMENTO: about-left (Contenedor de Imagen/Video)*/
+/* ================================================ */
+.about h3 {
+    /* Tipografía */
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Box Model */
+    margin-bottom: 0.625rem; /*10px convertido a rem*/
+}
+
+/* ELEMENTO: h2 (Título Principal) */
+.about h2 {
+    /* Tipografía */
+    font-size: 2.375rem; /* 38px convertido a rem */
+    color: var(--color-heading);
+    line-height: 1.2;
+    
+    /* Box Model */
+    margin: 0.625rem 0 1.5625rem 0; /*10px 0 25px 0 convertido a rem*/
+    max-width: 500px;
+}
+
+/* ELEMENTO: p(Párrafos) */
+.about p {
+    /* Tipografía */
+    font-size: var(--font-size-base); /*1rem (16px)*/
+    color: var(--color-text);
+    line-height: 1.6;
+    
+    /*Box Model*/
+    margin-bottom: 1.25rem /*20px convertido a rem*/;
+}
+
+/* ================================================ */
+/* MEDIA QUERIES: (Responsiveness y Accesibilidad)*/
+/* ================================================ */
+
+/*Ajuste para Tablets grandes / Escritorios pequeños*/
+@media (max-width: 800px) {
+    .about{
+        /* Layout: Pila vertical */
+        flex-direction: column;
+
+        /*Box Model*/
+        margin: 50px auto; /*Centrado y menos margen*/
+        width: 88%;
+        gad: 30px;
+        padding: 0; /* Se quita el padding para que el 88% sea efectivo*/
+    }
+
+    /* CORRECCIÓN CRÍTICA: Se corrige el selector para aplicar a ambos contenedores */
+    .about-left, .about-right {
+        flex-basis: 100%;
+        padding: 0;
+    }
+
+    /* Ajustes específicos de margen para el layout móvil*/
+    .about-left {
+        margin: 0;
+        aspect-ratio: auto;
+    }
+    .about-right {
+        order: 2; /*Asegura que el texto (right) aparezca después de la imagen (left)*/
+    }
+    .about h2 {
+        font-size: 1.75rem /*28px convertido a rem*/;
+        max-width: 100%;
+        margin-bottom: 0.9375rem; /*15px convertido a rem*/
+    }
+}

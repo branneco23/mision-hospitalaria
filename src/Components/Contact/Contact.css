@@ -1,0 +1,220 @@
+/* ================================================= */
+/* CONFIGURACIÓN GLOBAL / VARIABLES (Estándar de Calidad) */
+/* ================================================= */
+:root {
+    /* Paleta de Colores */
+    --color-primary: #6a82fb; /* Color de acento/enfoque */
+    --color-heading: #000F38; /* Azul oscuro para títulos */
+    --color-text-light: #676767; /* Gris claro para texto principal */
+    --color-text-muted: #888; /* Gris más suave para datos */
+    --color-input-bg: #F8F9FA; /* Fondo de campo */
+    --color-border-light: #DDD;
+    --color-border-subtle: #E0E0E0;
+    
+    /* Espaciado */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    --spacing-xxl: 80px;
+    
+    /* Border Radius y Sombras */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================================== */
+/* 1. Estilos del Contenedor Principal  */
+/* ==================================== */
+.contact {
+    /* Box Model */
+    margin: var(--spacing-xxl) auto;
+    max-width: 90%;
+    gap: var(--spacing-xl);
+    
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ==================================== */
+/* 2. Columna de Formulario (Izquierda) */
+/* ==================================== */
+.contact-col {
+    /* Layout */
+    flex-basis: 50%;
+    
+    /* Tipografía */
+    color: var(--color-text-light);
+}
+
+.contact-col h3 {
+    /* Tipografía */
+    color: var(--color-heading);
+    font-weight: 600;
+    font-size: 1.75rem; /* 28px convertido a rem */
+    
+    /* Box Model / Visual */
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid #EEE;
+}
+
+/* Estilos para entradas del formulario */
+.contact form input, 
+.contact form textarea {
+    /* Box Model */
+    display: block;
+    width: 100%;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+    
+    /* Visual */
+    background: var(--color-input-bg);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-sm);
+    outline: 0;
+    resize: vertical;
+    transition: border-color 0.3s;
+    
+    /* Tipografía */
+    font-size: 1rem; /* 16px convertido a rem */
+}
+/* Selectores simplificados y enfocados */
+.contact form input:focus, 
+.contact form textarea:focus {
+    border-color: var(--color-primary);
+}
+
+/* Estilo del mensaje de resultado */
+.contact-col span {
+    display: block;
+    margin: var(--spacing-lg) 0;
+    color: green; 
+    font-weight: 500;
+}
+
+/* ==================================== */
+/* 3. Columna de Información (Derecha) */
+/* ==================================== */
+.contact-info { /* Corregido a 'contact-info' si no usas BEM con guion bajo */
+    /* Layout */
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Estilo de la Tarjeta de Contacto (contact__card) */
+.contact__card {
+    /* Box Model */
+    padding: 25px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    
+    /* Visual e Interacción */
+    background: var(--color-white);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.contact__card:hover {
+    transform: translateY(-5px); 
+    box-shadow: var(--shadow-md);
+}
+
+/* Estilo del Ícono */
+.contact__card-icon {
+    /* Tipografía */
+    font-size: 2.5rem; /* 40px convertido a rem */
+    color: var(--color-primary);
+    
+    /* Box Model */
+    margin-bottom: var(--spacing-sm);
+    display: block; 
+}
+
+/* Estilo del Título */
+.contact__card-title {
+    /* Tipografía */
+    font-size: 1.125rem; /* 18px convertido a rem */
+    color: var(--color-heading);
+    font-weight: 700;
+    
+    /* Box Model */
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Estilo de los Datos (Usuario/Teléfono/etc) */
+.contact__card-data {
+    /* Tipografía */
+    font-size: 0.875rem; /* 14px convertido a rem */
+    color: var(--color-text-muted);
+    
+    /* Box Model */
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+/* Estilo del Botón/Enlace de Contacto (Escribenos) */
+.contact__button {
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    
+    /* Tipografía e Interacción */
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem; /* 15px convertido a rem */
+}
+.contact__button:hover {
+    text-decoration: underline;
+}
+.contact__button i {
+    /* Box Model / Transición */
+    margin-left: var(--spacing-xs);
+    transition: margin-left 0.3s;
+    
+    /* Tipografía */
+    font-size: 1.125rem; /* 18px convertido a rem */
+}
+.contact__button:hover i {
+    margin-left: var(--spacing-sm);
+}
+
+
+/* ==================================== */
+/* 4. Adaptación a Móviles (Responsive) */
+/* ==================================== */
+/* Uso de un breakpoint más específico para tabletas primero */
+@media (max-width: 992px) {
+    .contact {
+        gap: var(--spacing-lg); /* Menos espacio en tabletas */
+    }
+}
+
+
+@media (max-width: 800px){
+    /* En móviles, se apilan verticalmente */
+    .contact {
+        flex-direction: column;
+        gap: var(--spacing-xl); /* Espacio entre el formulario y las tarjetas */
+    }
+    .contact-col, .contact-info {
+        flex-basis: 100%;
+        padding: 0 var(--spacing-lg); /* 20px de padding */
+    }
+    .contact-col h3 {
+        text-align: center;
+    }
+}
+@media (max-width: 600px) {
+    .contact-col, .contact-info {
+        padding: 0 var(--spacing-sm); /* 10px de padding en pantallas muy pequeñas */
+    }
+}

@@ -1,0 +1,187 @@
+/* ================================================= */
+/* CONFIGURACIÓN GLOBAL / VARIABLES */
+/* ================================================= */
+:root {
+    /* Paleta de Colores - Usando colores comunes para un footer */
+    --color-background-dark: #000F38; /* Azul oscuro (o negro/gris oscuro) */
+    --color-text-light: #F8F8F8;      /* Gris muy claro para texto */
+    --color-accent: #6a82fb;          /* Color de acento para enlaces */
+    --color-separator: #203060;       /* Línea de separación sutil del footer avanzado */
+    --color-border-simple: #797979;   /* Color de borde para el footer simple */
+
+    /* Espaciado (Conversión a rem) */
+    --spacing-xs: 0.625rem; /* 10px */
+    --spacing-sm: 0.5rem;   /* 8px */
+    --spacing-md: 1rem;     /* 16px */
+    --spacing-lg: 1.5rem;   /* 24px */
+    --spacing-xl: 3rem;     /* 48px */
+    --spacing-xxl: 5rem;    /* 80px */
+    
+    /* Tipografía */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-small: 0.875rem; /* 14px */
+}
+
+/* ================================================= */
+/* BLOQUE: FOOTER SIMPLE (Selectores específicos para el pie de página) */
+/* ================================================= */
+/* Usamos la clase .footer y nos aseguramos de que sus estilos no afecten a otros elementos. */
+.footer {
+    /* Box Model & Best Practices */
+    width: 100%; /* Ocupar todo el ancho disponible */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+    margin: 0 auto; /* Eliminar márgenes externos innecesarios y centrar */
+    /* Padding horizontal para evitar que el contenido toque los bordes */
+    padding: var(--spacing-md) var(--spacing-lg); 
+    
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* Visual & Layering */
+    border-top: 1px solid var(--color-border-simple);
+    /* Z-Index bajo para que el navbar (si es fijo) lo tape */
+    z-index: 1; 
+}
+
+/* Estilos específicos para los elementos internos del footer */
+.footer ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 1.25rem; /* 20px convertido a rem */
+}
+
+.footer ul li a {
+    /* Estilos para los enlaces internos (Términos, Privacidad) */
+    text-decoration: none;
+    color: inherit; /* Hereda el color del texto si no se define uno */
+    transition: color 0.3s ease;
+}
+
+.footer ul li a:hover {
+    color: var(--color-accent);
+}
+
+
+/* ================================================= */
+/* RESPONSIVE FOOTER SIMPLE */
+/* ================================================= */
+@media (max-width: 600px) {
+    .footer {
+        display: block; /* Apila el copyright y los enlaces */
+        text-align: center;
+        padding: var(--spacing-md) var(--spacing-sm); 
+    }
+    .footer ul li {
+        margin: var(--spacing-xs); /* Espaciado ajustado para móvil */
+    }
+    .footer ul {
+        margin-top: var(--spacing-xs); 
+    }
+}
+
+
+/* ================================================= */
+/* BLOQUE: FOOTER AVANZADO (Estilos generados previamente) */
+/* Estos estilos no afectan al selector '.footer' principal. */
+/* ================================================= */
+
+.footer__content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: var(--spacing-xl);
+}
+
+.footer__column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-light);
+}
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer__list-item {
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer__link {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+    transition: color 0.3s;
+}
+
+.footer__link:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.footer__social-links {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.footer__social-link i {
+    font-size: 1.75rem;
+    color: var(--color-text-light);
+    transition: color 0.3s;
+}
+
+.footer__social-link i:hover {
+    color: var(--color-accent);
+}
+
+.footer__bottom {
+    border-top: 1px solid var(--color-separator);
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    margin-top: var(--spacing-xxl);
+}
+
+.footer__copyright {
+    font-size: var(--font-size-small);
+    opacity: 0.8;
+}
+
+
+/* ================================================= */
+/* RESPONSIVE FOOTER AVANZADO (Móviles y Tabletas) */
+/* ================================================= */
+@media (max-width: 768px) {
+    /* Nota: El estilo .footer ya está cubierto por el media query de 600px arriba */
+    
+    .footer__content-container {
+        /* Apilar columnas verticalmente */
+        flex-direction: column; 
+        gap: var(--spacing-lg);
+        text-align: center;
+    }
+    
+    .footer__column {
+        min-width: 100%;
+    }
+
+    .footer__title {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .footer__social-links {
+        justify-content: center;
+    }
+}

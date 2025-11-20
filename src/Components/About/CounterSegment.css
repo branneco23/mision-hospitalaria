@@ -1,0 +1,117 @@
+/* ====================================================== */
+/* CONFIGURACIÓN GLOBAL / VARIABLES (estándar de calidad) */
+/* ====================================================== */
+:root {
+    --color-orange: #F77F00;
+    --color-dark-blue: #000F38;
+    --color-white: #FFFFFF;
+    --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    /* Espaciado y Unidades*/
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 50px;
+    --border-radius-md: 12px;
+}
+
+/* ====================================================== */
+/* BLOQUE: COUNTER-SEGMENT (Contenedor Principal) */
+/* ====================================================== */
+
+.counter-segment {
+    /*Box Model y Layout*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /*Uso de Variables y Unidades Relativas*/
+    gap: var(--spacing-md);
+    margin: var(--spacing-xl) auto;
+    padding: 0 10%;
+    width: 100%;
+}
+
+/* ====================================================== */
+/* ELEMENTO: COUNTER-BLOCK (bloques individuales) */
+/* ====================================================== */
+.counter-block {
+    /* Layout */
+    flex: 1;
+    
+    /* Box Model */
+    max-width: 450px;
+    padding: var(--spacing-lg) 40px;
+
+    /* Visual */
+    text-align: center;
+    color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-large);
+}
+
+/* MODIFICADOR: left-block */
+.left-block {
+    background-color: var(--color-orange);
+}
+
+/* MODIFICADOR: right-block */
+.right-block {
+    background-color: var(--color-dark-blue);
+}
+
+/* ====================================================== */
+/* ELEMENTOS DENTRO DEL BLOQUE (Tipografía) */
+/* ====================================================== */
+
+/*Título/Número (h2) */
+.counter-block h2 {
+    /* Conversión de 60px a rem para accesibilidad */
+    font-size: 3.75rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: var(--spacing-sm) 0;
+}
+
+/* Párrafo/Descripción (p) */
+.counter-block p {
+    /* Conversión de 20px a rem*/
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-top: var(--spacing-xs);
+}
+
+/* Icono */
+.counter-icon {
+    /* Conversión de 40px a rem */
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Signo de suma */
+.plus-sign {
+    font-size: 0.7em; /* Se mantiene 'em' para relación con el h2*/
+    vertical-align: top;
+    margin-left: var(--spacing-xs);
+}
+
+/* ====================================================== */
+/* MEDIA QUERIES (Responsiveness) */
+/* ====================================================== */
+
+/*Responsive para Móviles*/
+@media (max-width: 768px) {
+    .counter-segment {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    .counter-block {
+        max-width: 90%;
+        padding: var(--spacing-lg) 20px; /*Reducir padding horizontal en móvil */
+    }
+    .counter-block h2 {
+        /*Conversión de 50px a rem*/
+        font-size: 3.125rem;
+    }
+}
