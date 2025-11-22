@@ -1,0 +1,217 @@
+/* =====================================================
+Estándares de Calidad
+1. Uso de Unidades Relativas (rem) para accesibilidad.
+2. Variables CSS para gestión centralizada de colores.
+3. Estructura BEM simplificada.
+===================================================== */
+
+/* 1. Variables Globales de Color y Sombra */
+:root {
+    --color-primary: #00BCD4; /* Azul/Cian para contraste (Active/Focus) */
+    --color-text-dark: #333;
+    --color-text-light: #666;
+    --color-background-light: #F0F0F0;
+    --color-background-white: #FFFFFF;
+    --color-border-light: #CCC;
+    --shadow-default: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.8);
+    --shadow-max: rgba(0, 0, 0, 0.5);
+}
+
+/* =====================================================
+Bloque: GALLERY-SECTION
+Contenedor principal
+===================================================== */
+.gallery-section {
+    padding: 3rem 0;
+    text-align: center;
+    /* Usar container wrapper si no está en otro lugar */
+    max-width: 75rem; /* 1200px */
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
+
+/* =====================================================
+Elemento: GALLERY-BUTTONS
+Contenedor de botones de filtrado
+===================================================== */
+.gallery-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.625rem; /* 10px */
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+/* =====================================================
+Elemento: BTN (Estilos reutilizables para botones)
+===================================================== */
+.btn {
+    /* Padding: 10px 20px -> 0.625rem 1.25rem */
+    padding: 0.625rem 1.25rem;
+    border: 0.0625rem solid var(--color-border-light); /* 1px */
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-radius: 0.3125rem; /* 5px */
+    /* Asegura que el botón se ajuste al contenido */
+    display: inline-block; 
+}
+
+.btn:hover {
+    background-color: #E0E0E0;
+}
+
+.btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-background-white);
+    border-color: var(--color-primary);
+    /* Box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) -> 0 0.25rem 0.375rem */
+    box-shadow: 0 0.25rem 0.375rem var(--shadow-default);
+}
+
+/* =====================================================
+Elemento: GALLERY-GRID
+Contenedor de la galería de imágenes
+===================================================== */
+.gallery-grid {
+    display: grid;
+    /* Grid de 3 Columnas en pantallas grandes */
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); /* 300px */
+    gap: 1.25rem; /* 20px */
+    max-width: 75rem; /* 1200px */
+    margin: 0 auto;
+    padding: 0 0.9375rem; /* 15px */
+}
+
+/* =====================================================
+Bloque: GALLERY-ITEM
+Cada imagen individual en la cuadrícula
+===================================================== */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem; /* 8px */
+    /* Box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) -> 0 0.25rem 0.5rem */
+    box-shadow: 0 0.25rem 0.5rem var(--shadow-default); 
+    cursor: pointer;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 18.75rem; /* 300px */
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+/* Overlay de texto sobre la imagen */
+.item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--color-background-white);
+    padding: 0.625rem 0; /* 10px */
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .item-overlay {
+    opacity: 1;
+}
+
+/* Mensaje si no hay imágenes */
+.no-images {
+    grid-column: 1 / -1;
+    padding: 2rem;
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+}
+
+/* =================================================== */
+/* Bloque: POP-UP / LIGHTBOX (Modal para ver imagen grande)
+/* =================================================== */
+
+.pop-up {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1.25rem; /* 20px */
+    box-sizing: border-box;
+}
+
+/* Elemento: Imagen dentro del Pop-up */
+.pop-up img {
+    max-width: 90%; 
+    max-height: 90vh; 
+    width: auto; 
+    height: auto; 
+    border-radius: 0.5rem; /* 8px */
+    /* Box-shadow: 0 0 20px rgba(0, 0, 0, 0.8) -> 0 0 1.25rem */
+    box-shadow: 0 0 1.25rem var(--shadow-max); 
+    pointer-events: auto;
+}
+
+/* =================================================== */
+/* Elemento: SLIDER-BTN (Botones de navegación del modal)
+/* =================================================== */
+
+.slider-btn {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2); 
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0.625rem; /* 10px */
+    z-index: 1001; 
+    top: 50%; 
+    transform: translateY(-50%);
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.slider-btn img {
+    width: 1.5625rem; /* 25px */
+    height: 1.5625rem; /* 25px */
+    filter: invert(1); 
+}
+
+.prev-btn {
+    left: 2.5rem; /* 40px */
+}
+
+.next-btn {
+    right: 2.5rem; /* 40px */
+}
+
+/* =================================================== */
+/* Elemento: SLIDER-COUNTER (Contador de imágenes)
+/* =================================================== */
+
+.slider-counter {
+    position: absolute;
+    bottom: 1.25rem; /* 20px */
+    color: var(--color-background-white);
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.3125rem 0.625rem; /* 5px 10px */
+    border-radius: 0.3125rem; /* 5px */
+}

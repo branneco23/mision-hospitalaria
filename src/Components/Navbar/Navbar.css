@@ -1,72 +1,127 @@
+/* =====================================================
+Estándares de Calidad
+1. Unidades Relativas (rem) para accesibilidad.
+2. Nomenclatura clara (BEM simplificado).
+3. Uso de colores primarios para la variante 'dark'.
+===================================================== */
+
+/* =====================================================
+Bloque: NAV (Barra de Navegación Principal)
+===================================================== */
 nav {
     width: 100%;
-    /* background: #0693F9; */
     color: #EEE;
-    padding: 2px 0;
+    padding: 0.125rem 0; /* 2px */
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
     align-items: center;
+    /* Usa padding lateral para control de espacio */
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem;
     justify-content: space-between;
-    z-index: 10;
-    transition: 0.5s;
+    z-index: 100; /* Alto z-index para asegurar que esté sobre el contenido */
+    transition: all 0.5s ease-in-out;
 }
+
+/* Modificador: .dark-nav (Estilo cuando se activa el fondo, p. ej., al hacer scroll) */
+.dark-nav {
+    padding: 0.5rem 1.5rem; /* 8px 24px */
+    /* Usando un degradado atractivo para el modo oscuro */
+    background: linear-gradient(to right, #6A82FB, #212EA0); 
+    /* El transition ya está en 'nav', no necesita repetirse */
+}
+
+/* =====================================================
+Elemento: .logo
+===================================================== */
 .logo {
-    width: 150px;
-    height: 100px;
-    transition: 0.5s;
+    width: 9.375rem; /* 150px */
+    height: 6.25rem; /* 100px */
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+    cursor: pointer;
 }
+
+/* =====================================================
+Elemento: nav ul (Lista de Navegación)
+===================================================== */
+nav ul {
+    /* Reseteo de margen y padding para la lista */
+    margin: 0;
+    padding: 0;
+}
+
+/* Elemento: nav ul li (Ítem de la lista) */
 nav ul li {
     display: inline-block;
     list-style: none;
-    margin: 5px 20px;
-    font-size: 20px;
-}
-.dark-nav {
-    padding: 8px 0;
-    background: linear-gradient(to right, #6A82FB, #212EA0);
-    transition: 0.5s;
+    /* Margen: 5px 20px -> 0.3125rem 1.25rem */
+    margin: 0.3125rem 1.25rem;
+    font-size: 1.25rem; /* 20px */
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
+nav ul li:hover {
+    color: #FFD700; /* Un color de acento al pasar el mouse */
+}
+
+/* =====================================================
+Elemento: .menu-icon
+Icono para el menú móvil (inicialmente oculto)
+===================================================== */
 .menu-icon {
     display: none;
+    width: 1.875rem; /* 30px */
+    cursor: pointer;
 }
 
-/**---- media query ----*/
-@media (max-width: 1000px){
+
+/* =====================================================
+Media Queries: Diseño Responsivo
+===================================================== */
+
+/* Dispositivos intermedios (max-width: 1000px) */
+@media (max-width: 62.5rem){ /* 1000px */
     .logo {
-        width: 140px;
+        width: 8.75rem; /* 140px */
     }
-    .nav ul li {
-        margin: 10px 15px;
+    nav ul li {
+        /* Margen: 10px 15px -> 0.625rem 0.9375rem */
+        margin: 0.625rem 0.9375rem;
     }
 }
-@media (max-width: 840px){
+
+/* Móviles (max-width: 840px) - Activación del menú lateral */
+@media (max-width: 52.5rem){ /* 840px */
     nav {
-        padding: 15px 0;
+        padding: 0.9375rem 1.5rem; /* 15px */
     }
     nav ul {
         position: fixed;
         top: 0;
-        right: 0px;
+        right: 0;
         bottom: 0;
-        background: #212EA0;
-        z-index: -1;
-        width: 200px;
-        padding-top: 70px;
-        transition: 0.5s;
+        background: #212EA0; /* Fondo del menú móvil */
+        z-index: 99; /* Z-index debajo del nav principal (100) */
+        width: 12.5rem; /* 200px */
+        padding-top: 4.375rem; /* 70px */
+        transition: right 0.5s ease-in-out; /* Transición para el slide in/out */
     }
     nav ul li{
-        display: block;
-        margin: 25px 40px;
+        display: block; /* Elementos apilados verticalmente */
+        /* Margen: 25px 40px -> 1.5625rem 2.5rem */
+        margin: 1.5625rem 2.5rem;
     }
     .menu-icon{
         display: block;
-        width: 30px;
-        cursor: pointer;
+        /* El tamaño ya está definido arriba */
+        z-index: 101; /* Asegura que el icono esté por encima del menú lateral */
     }
+    /* Clase para ocultar el menú (se usa con JS) */
     .hide-mobile-menu{
-        right: -200px;
+        right: -12.5rem; /* -200px */
     }
 }

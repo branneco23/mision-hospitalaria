@@ -1,31 +1,58 @@
+/* =====================================================
+Bloque: PROGRAMS
+Módulo: Estilos para la sección de listado de programas/servicios
+Estándares: Unidades 'rem' para tipografía y espaciado.
+===================================================== */
 .programs {
-    margin: 80px auto;
+    /* Margen: 80px auto -> 5rem auto */
+    margin: 5rem auto; 
     width: 100%;
-    padding: 0 20px;
+    /* Padding: 0 20px -> 0 1.25rem */
+    padding: 0 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    /* Usar container wrapper si se quiere limitar el ancho máximo */
+    max-width: 75rem; /* 1200px */
 }
-.program img{
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-    object-fit: cover
-}
+
+/* =====================================================
+Elemento: .program (Contenedor de cada ítem)
+===================================================== */
 .program {
-    flex-basis: 31%;
-    margin-bottom: 25px;
+    /* 31% para dejar espacio para los 3 ítems y el espacio entre ellos (gap) */
+    flex-basis: 31%; 
+    /* Margen inferior: 25px -> 1.5625rem */
+    margin-bottom: 1.5625rem;
     position: relative;
+    border-radius: 0.625rem; /* 10px */
+    overflow: hidden; /* Importante para el radio de borde de la imagen/caption */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
+
+/* Elemento: .program img */
+.program img {
+    width: 100%;
+    /* El radio de borde se movió al contenedor '.program' */
+    display: block; 
+    object-fit: cover;
+    /* Asegura que la imagen ocupe el espacio sin perder calidad */
+    height: 18.75rem; /* Altura fija para consistencia visual (300px) */
+    transition: transform 0.4s ease;
+}
+
+/* =====================================================
+Elemento: .caption (Overlay/Máscara al pasar el mouse)
+===================================================== */
 .caption {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(0, 15, 152, 0.3);
+    width: 100%; /* Usar width/height en lugar de right/bottom para claridad */
+    height: 100%;
+    background: rgba(0, 15, 152, 0.75); /* Aumentado el alfa a 0.75 para mejor contraste de texto */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,26 +60,44 @@
     color: #FFF;
     cursor: pointer;
     opacity: 0;
-    padding-top: 70%;
-    transition: 0.4s;
-}
-.caption img {
-    width: 60px;
-    margin-bottom: 10px;
-}
-.program:hover .caption {
-    opacity: 1;
-    padding-top: 0;
+    /* Removido padding-top: 70%; para usar un efecto de transición más moderno (transform/opacity) */
+    transition: opacity 0.4s ease, background 0.4s ease;
+    text-align: center;
+    padding: 1rem; /* Padding interno para el texto */
+    box-sizing: border-box;
 }
 
-/* ---- media query ---- */
-@media (max-width: 650px){
+/* Elemento: .caption img (Ícono dentro del overlay) */
+.caption img {
+    width: 3.75rem; /* 60px */
+    margin-bottom: 0.625rem; /* 10px */
+    height: auto; /* Permite que el ícono se ajuste */
+}
+
+/* Efecto Hover: Muestra el caption y aplica un efecto de zoom a la imagen */
+.program:hover .caption {
+    opacity: 1;
+}
+.program:hover img {
+    transform: scale(1.05);
+}
+
+/* =====================================================
+Media Queries: Diseño Responsivo
+===================================================== */
+@media (max-width: 40.625rem){ /* 650px */
     .programs {
         flex-direction: column;
-        padding: 0 10px;
+        padding: 0 0.625rem; /* 10px */
     }
     .program {
-        flex-basis: 100%;
-        margin: 20px;
+        flex-basis: 100%; /* Ocupa todo el ancho */
+        /* Margen: 20px -> 1.25rem */
+        margin: 1.25rem auto;
+        max-width: 25rem; /* Límite en móvil para que no sea demasiado ancho */
+    }
+    /* Reduce la altura de la imagen en móvil para que no ocupe demasiado espacio vertical */
+    .program img {
+        height: 15rem; /* 240px */
     }
 }
