@@ -3,6 +3,20 @@
 // Incluye todas las imágenes de la galería, usuarios e íconos de navegación
 // ===================================================
 
+// ---- Íconos de Programas ----
+import program_icon_3 from '../assets/program-icon-3.png';
+
+// ---- Imágenes de Programas ---
+import program_1 from '../assets/program-1.png';
+import program_2 from '../assets/program-2.png';
+import program_3 from '../assets/program-3.png';
+import program_4 from '../assets/program-4.png';
+import program_5 from '../assets/program-5.png';
+import program_6 from '../assets/program-6.png';
+import program_7 from '../assets/program-7.png';
+import program_8 from '../assets/program-8.png';
+import program_9 from '../assets/program-9.png';
+
 // ---- Imágenes de Galería ---
 import gallery_1 from '../assets/imagenA.png';
 import gallery_2 from '../assets/imagenB.png';
@@ -40,14 +54,78 @@ import next_icon from '../assets/next-icon.png';
 import back_icon from '../assets/back-icon.png';
 
 // ===================================================
-// 2. EXPORTACIONES INDIVIDUALES (Íconos de Navegación)
+// 2. ESTRUCTURA DE DATOS: PROGRAMAS (programsData)
+// Array de objetos con el contenido de las tarjetas de programas
+// ===================================================
+
+export const programsData = [
+    {
+        id: 1,
+        title: "Hospital Universitario Hernando Moncaleano Perdomo",
+        image: program_1,
+        altText: "Fachada del Hospital Universitario de Neiva",
+    },
+    {
+        id: 2,
+        title: "Clínica Medilaser (Sede Principal/General)",
+        image: program_2,
+        altText: "Fachada de la Clínica Medilaser sede principal",
+    },
+    {
+        id: 3,
+        title: "Clínica Medilaser 'Abner Lozano'",
+        image: program_3,
+        altText: "Fachada de la Clínica Medilaser Abner Lozano",
+    },
+    {
+        id: 4,
+        title: "Clínica Medilaser Myriam Parra",
+        image: program_4,
+        altText: "Fachada de la Clínica Medilaser Myriam Parra",
+    },
+    {
+        id: 5,
+        title: "Clínica Belo Horizonte",
+        image: program_5,
+        altText: "Fachada de la Clínica Belo Horizonte",
+    },
+    {
+        id: 6,
+        title: "La Clinica Uros S.A",
+        image: program_6,
+        altText: "Fachada de la Clínica Uros S.A",
+    },
+    {
+        id: 7,
+        title: "Clinica Emcosalud",
+        image: program_7,
+        altText: "Fachada de la Clínica Emcosalud",
+    },
+    {
+        id: 8,
+        title: "Hogar Geriatrico Fundabuelos",
+        image: program_8,
+        altText: "Fachada del Hogar Geriatrico Fundabuelos",
+    },
+    {
+        id: 9,
+        title: "Clinica Materno Infantil",
+        image: program_9,
+        altText: "Fachada de la Clínica Materno Infantil",
+    },
+];
+
+export const programIcon = program_icon_3;
+
+// ===================================================
+// 3. EXPORTACIONES INDIVIDUALES (Íconos de Navegación)
 // ===================================================
 
 export const nextIcon = next_icon;
 export const backIcon = back_icon;
 
 // ===================================================
-// 3. ESTRUCTURA DE DATOS: GALERÍA (galleryData)
+// 4. ESTRUCTURA DE DATOS: GALERÍA (galleryData)
 // Array de objetos con el id, src y alt para accesibilidad
 // ===================================================
 
@@ -78,7 +156,7 @@ export const galleryData = [
 ];
 
 // ===================================================
-// 3. ESTRUCTURA DE FILTRADO DE IMAGEN: FILTRADO (filterData)
+// 5. ESTRUCTURA DE FILTRADO DE IMAGEN: FILTRADO (filterData)
 // Array de objetos con el contenido de los slides
 // ===================================================
 
@@ -188,7 +266,7 @@ export const galleryImages = [
 ];
 
 // ===================================================
-// 4. ESTRUCTURA DE DATOS: TESTIMONIOS (testimonialsData)
+// 6. ESTRUCTURA DE DATOS: TESTIMONIOS (testimonialsData)
 // Array de objetos con el contenido de los slides
 // ===================================================
 
@@ -228,7 +306,7 @@ export const testimonialsData = [
 ];
 
 // ===================================================
-// 5. EXPORTACIONES PARA FILTRADO DE GALERÍA
+// 7. EXPORTACIONES PARA FILTRADO DE GALERÍA
 // Genera dinámicamente la lista de categorías únicas para los botones
 // ===================================================
 
@@ -239,8 +317,3 @@ const uniqueCategories = [
 
 // allCategories contendrá 'Todo' + las categorías únicas
 export const allCategories = ['Todo', ...uniqueCategories];
-
-// NOTA: Si quisieras usar galleryData, la lógica sería similar, pero galleryData 
-// solo tiene 3 elementos y algunas categorías están incompletas. 
-// Asumiré que quieres usar galleryImages para la galería filtrable,
-// pero mantendremos galleryData por si se usa en otros componentes (como Campus.jsx)

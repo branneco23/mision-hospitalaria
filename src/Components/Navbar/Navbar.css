@@ -1,8 +1,8 @@
 /* =====================================================
 Estándares de Calidad
-1. Unidades Relativas (rem) para accesibilidad.
-2. Nomenclatura clara (BEM simplificado).
-3. Uso de colores primarios para la variante 'dark'.
+1. Unidades Relativas (rem) para accesibilidad (basado en font-size: 16px).
+2. Nomenclatura clara (BEM simplificado: Bloque, Elemento, Modificador).
+3. Transiciones suaves para mejor experiencia de usuario.
 ===================================================== */
 
 /* =====================================================
@@ -10,41 +10,47 @@ Bloque: NAV (Barra de Navegación Principal)
 ===================================================== */
 nav {
     width: 100%;
-    color: #EEE;
-    padding: 0.125rem 0; /* 2px */
+    color: #EEE; /* Color de texto claro por defecto */
+    padding: 0.125rem 0; /* padding vertical mínimo (2px) */
     position: fixed;
     top: 0;
     left: 0;
+    
     display: flex;
     align-items: center;
-    /* Usa padding lateral para control de espacio */
+    justify-content: space-between;
+    
+    /* Padding lateral para control de espacio en escritorios y móviles */
     padding-left: 1.5rem; 
     padding-right: 1.5rem;
-    justify-content: space-between;
+    
     z-index: 100; /* Alto z-index para asegurar que esté sobre el contenido */
-    transition: all 0.5s ease-in-out;
+    /* Transición general para el cambio de fondo y padding */
+    transition: background-color 0.5s, padding 0.5s, all 0.5s ease-in-out;
 }
 
-/* Modificador: .dark-nav (Estilo cuando se activa el fondo, p. ej., al hacer scroll) */
+/* Modificador: .dark-nav (Estilo cuando se activa el fondo al hacer scroll) */
 .dark-nav {
-    padding: 0.5rem 1.5rem; /* 8px 24px */
-    /* Usando un degradado atractivo para el modo oscuro */
+    padding: 0.5rem 1.5rem; /* 8px vertical, 24px horizontal */
+    /* RESTAURADO: Se mantiene el degradado solicitado */
     background: linear-gradient(to right, #6A82FB, #212EA0); 
-    /* El transition ya está en 'nav', no necesita repetirse */
 }
 
 /* =====================================================
-Elemento: .logo
+Elemento: .nav__logo
 ===================================================== */
 .logo {
     width: 9.375rem; /* 150px */
-    height: 6.25rem; /* 100px */
-    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
     cursor: pointer;
+    transition: width 0.5s ease-in-out; 
+    
+    /* AÑADIDO: Sombra de contraste para asegurar la visibilidad del logo 
+       sobre el degradado o cualquier otro fondo. */
+    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.8)); 
 }
 
 /* =====================================================
-Elemento: nav ul (Lista de Navegación)
+Elemento: nav ul (Lista de Navegación - nav__list)
 ===================================================== */
 nav ul {
     /* Reseteo de margen y padding para la lista */
@@ -52,7 +58,7 @@ nav ul {
     padding: 0;
 }
 
-/* Elemento: nav ul li (Ítem de la lista) */
+/* Elemento: nav ul li (Ítem de la lista - nav__item) */
 nav ul li {
     display: inline-block;
     list-style: none;
@@ -60,22 +66,23 @@ nav ul li {
     margin: 0.3125rem 1.25rem;
     font-size: 1.25rem; /* 20px */
     cursor: pointer;
-    text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
 nav ul li:hover {
-    color: #FFD700; /* Un color de acento al pasar el mouse */
+    color: #FFD700; /* Color de acento al pasar el mouse */
 }
 
 /* =====================================================
 Elemento: .menu-icon
-Icono para el menú móvil (inicialmente oculto)
+Icono para el menú móvil (inicialmente oculto en desktop)
 ===================================================== */
 .menu-icon {
     display: none;
     width: 1.875rem; /* 30px */
     cursor: pointer;
+    /* Sombra para asegurar la visibilidad del ícono sobre el fondo */
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4)); 
 }
 
 
@@ -83,19 +90,20 @@ Icono para el menú móvil (inicialmente oculto)
 Media Queries: Diseño Responsivo
 ===================================================== */
 
-/* Dispositivos intermedios (max-width: 1000px) */
+/* Escritorio Pequeño y Tablet (max-width: 1000px) */
 @media (max-width: 62.5rem){ /* 1000px */
     .logo {
         width: 8.75rem; /* 140px */
     }
     nav ul li {
-        /* Margen: 10px 15px -> 0.625rem 0.9375rem */
-        margin: 0.625rem 0.9375rem;
+        /* Ajuste de margen para pantallas un poco más pequeñas */
+        margin: 0.625rem 0.9375rem; /* 10px 15px */
     }
 }
 
 /* Móviles (max-width: 840px) - Activación del menú lateral */
 @media (max-width: 52.5rem){ /* 840px */
+    /* Asegurar que el nav principal tiene un buen padding en móvil */
     nav {
         padding: 0.9375rem 1.5rem; /* 15px */
     }
@@ -104,24 +112,24 @@ Media Queries: Diseño Responsivo
         top: 0;
         right: 0;
         bottom: 0;
-        background: #212EA0; /* Fondo del menú móvil */
+        background: #212EA0; /* Fondo del menú móvil, consistente con el color principal del degradado */
         z-index: 99; /* Z-index debajo del nav principal (100) */
         width: 12.5rem; /* 200px */
         padding-top: 4.375rem; /* 70px */
-        transition: right 0.5s ease-in-out; /* Transición para el slide in/out */
+        /* Mejorar la transición de entrada/salida */
+        transition: right 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
     }
     nav ul li{
         display: block; /* Elementos apilados verticalmente */
-        /* Margen: 25px 40px -> 1.5625rem 2.5rem */
-        margin: 1.5625rem 2.5rem;
+        /* Margen aumentado para mejor toque táctil */
+        margin: 1.5625rem 2.5rem; /* 25px 40px */
     }
     .menu-icon{
         display: block;
-        /* El tamaño ya está definido arriba */
-        z-index: 101; /* Asegura que el icono esté por encima del menú lateral */
+        z-index: 101; /* Asegura que el icono esté por encima de todo */
     }
     /* Clase para ocultar el menú (se usa con JS) */
     .hide-mobile-menu{
-        right: -12.5rem; /* -200px */
+        right: -12.5rem; /* Ocultar fuera de la vista */
     }
 }
